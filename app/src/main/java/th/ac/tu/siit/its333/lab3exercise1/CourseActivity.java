@@ -1,9 +1,13 @@
 package th.ac.tu.siit.its333.lab3exercise1;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
 
 public class CourseActivity extends ActionBarActivity {
@@ -35,5 +39,44 @@ public class CourseActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void add_course(View v){
+
+        Intent i = new Intent(this, MainActivity.class);
+        String course_name = ((EditText) findViewById(R.id.etCode)).getText().toString();
+        int credit = Integer.parseInt(((EditText) findViewById(R.id.etCR)).getText().toString());
+        i.putExtra("course-name",course_name);
+        i.putExtra("course-credit", credit);
+
+        RadioGroup rg = (RadioGroup) findViewById(R.id.rgroup);
+        String grade="";
+
+        switch (rg.getCheckedRadioButtonId()){
+
+            case R.id.rbA: grade = "A";
+                break;
+            case R.id.rbBP:  grade = "B+";
+                break;
+            case R.id.rbB:  grade = "B";
+                break;
+            case R.id.rbCP:  grade = "C+";
+                break;
+            case R.id.rbC:  grade = "C";
+                break;
+            case R.id.rbDP:  grade = "D+";
+                break;
+            case R.id.rbD:  grade = "D";
+                break;
+            case R.id.rbF:  grade = "F";
+                break;
+            default: grade = "F";
+                break;
+
+        }
+        i.putExtra("grades", grade);
+        setResult(RESULT_OK, i);
+        finish();
+
     }
 }

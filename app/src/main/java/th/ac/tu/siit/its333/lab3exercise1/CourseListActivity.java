@@ -1,9 +1,12 @@
 package th.ac.tu.siit.its333.lab3exercise1;
 
+//import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.content.Intent;
 
 
 public class CourseListActivity extends ActionBarActivity {
@@ -12,6 +15,28 @@ public class CourseListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
+        Intent i = getIntent();
+        String list_courses = i.getStringExtra("courses");
+
+        /**/
+        TextView list = (TextView)findViewById(R.id.tvList);
+        list.setText(list_courses);
+        /*int j;
+
+
+
+        TextView list = (TextView)findViewById(R.id.tvList);
+        for(j = 0; j < size; j++){
+            list.setText("List of Courses");
+            //String all = list.getText().toString();
+            String codes = new MainActivity().listCodes.get(j);
+            int credit = new  MainActivity().listCredits.get(j);
+            String grade_string = new  MainActivity().listGrades.get(j);
+            list.append("\n"+codes+" ("+ credit +" credits)"+" = "+grade_string);
+        }*/
+
+
+
     }
 
 
